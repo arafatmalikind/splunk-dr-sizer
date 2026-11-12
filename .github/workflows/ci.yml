@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e .[test]
+      - run: pytest -q
+      - name: Sample report and configs are reproducible
+        run: |
+          drsizer report examples/active-passive-4x2.json examples/active-passive-4x4.json examples/broken-3x2.json -o docs/sample-report.md
+          drsizer config examples/active-passive-4x4.json -o docs/generated
+          git diff --exit-code docs/

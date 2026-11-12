@@ -1,0 +1,12 @@
+{
+  "name": "Invalid: 3 + 2, searchable copies the DR site cannot hold",
+  "ingest_gb_per_day": 110,
+  "retention_days": 180,
+  "sites": [
+    {"name": "site1", "role": "primary", "indexers": 3, "search_heads": 2, "cluster_manager": true},
+    {"name": "site2", "role": "dr", "indexers": 2, "search_heads": 2}
+  ],
+  "site_replication_factor": "origin:2,site2:3,total:4",
+  "site_search_factor": "origin:1,site1:1,total:2",
+  "network": {"inter_site_mbps": 100}
+}

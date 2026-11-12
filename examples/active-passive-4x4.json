@@ -1,0 +1,16 @@
+{
+  "name": "Active/passive, 4 + 4 indexers, searchable copy in DR",
+  "ingest_gb_per_day": 110,
+  "growth_pct_per_year": 15,
+  "plan_years": 2,
+  "retention_days": 365,
+  "sites": [
+    {"name": "site1", "role": "primary", "indexers": 4, "search_heads": 3, "cluster_manager": true},
+    {"name": "site2", "role": "dr", "indexers": 4, "search_heads": 2, "cluster_manager": true}
+  ],
+  "site_replication_factor": "origin:2,site1:2,site2:2,total:4",
+  "site_search_factor": "origin:1,site1:1,site2:1,total:2",
+  "manager_switchover_mode": "manual",
+  "network": {"inter_site_mbps": 1000, "max_utilisation_pct": 50, "peak_to_average": 3},
+  "outage_hours_to_recover": 24
+}

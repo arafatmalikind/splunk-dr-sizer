@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "splunk-dr-sizer"
+version = "0.4.0"
+description = "Size and validate multisite Splunk indexer cluster and search head cluster designs for disaster recovery"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Arafat Malik"}]
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["splunk", "disaster-recovery", "multisite", "indexer-cluster", "capacity-planning", "siem"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+drsizer = "drsizer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
